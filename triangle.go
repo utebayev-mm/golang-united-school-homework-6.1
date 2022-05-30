@@ -8,7 +8,7 @@ type Triangle struct {
 }
 
 func (t Triangle) CalcArea() float64 {
-	return math.Sqrt(3) / 4 * t.Side
+	return math.Sqrt(3) / 4 * t.Side * t.Side
 }
 
 func (t Triangle) CalcPerimeter() float64 {

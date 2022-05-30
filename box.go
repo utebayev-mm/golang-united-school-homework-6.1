@@ -32,7 +32,7 @@ func (b *box) AddShape(shape Shape) error {
 // GetByIndex allows getting shape by index
 // whether shape by index doesn't exist or index went out of the range, then it returns an error
 func (b *box) GetByIndex(i int) (Shape, error) {
-	panic("implement me")
+	return b.shapes[i], nil
 
 }
 
@@ -52,7 +52,11 @@ func (b *box) ReplaceByIndex(i int, shape Shape) (Shape, error) {
 
 // SumPerimeter provides sum perimeter of all shapes in the list.
 func (b *box) SumPerimeter() float64 {
-	panic("implement me")
+	var sum float64
+	for i := 0; i < len(b.shapes); i++ {
+		sum += b.shapes[i].CalcPerimeter()
+	}
+	return sum
 
 }
 
