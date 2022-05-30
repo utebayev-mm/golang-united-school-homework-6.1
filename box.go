@@ -1,5 +1,9 @@
 package golang_united_school_homework
 
+import (
+	"fmt"
+	"strconv"
+)
 
 // box contains list of shapes and able to perform operations on them
 type box struct {
@@ -17,7 +21,12 @@ func NewBox(shapesCapacity int) *box {
 // AddShape adds shape to the box
 // returns the error in case it goes out of the shapesCapacity range.
 func (b *box) AddShape(shape Shape) error {
-	panic("implement me")
+	b.shapes = append(b.shapes, shape)
+	cap := strconv.Itoa(b.shapesCapacity)
+	if len(b.shapes) > b.shapesCapacity {
+		return fmt.Errorf("the expected length is "+cap+", but actual %d", len(b.shapes))
+	}
+	return nil
 }
 
 // GetByIndex allows getting shape by index
@@ -49,8 +58,11 @@ func (b *box) SumPerimeter() float64 {
 
 // SumArea provides sum area of all shapes in the list.
 func (b *box) SumArea() float64 {
-	panic("implement me")
-
+	var sum float64
+	for i := 0; i < len(b.shapes); i++ {
+		sum += b.shapes[i].CalcArea()
+	}
+	return sum
 }
 
 // RemoveAllCircles removes all circles in the list
