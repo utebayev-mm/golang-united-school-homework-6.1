@@ -21,11 +21,14 @@ func NewBox(shapesCapacity int) *box {
 // AddShape adds shape to the box
 // returns the error in case it goes out of the shapesCapacity range.
 func (b *box) AddShape(shape Shape) error {
-	b.shapes = append(b.shapes, shape)
 	cap := strconv.Itoa(b.shapesCapacity)
 	if len(b.shapes) > b.shapesCapacity {
 		return fmt.Errorf("the expected length is "+cap+", but actual %d", len(b.shapes))
+	} else if len(b.shapes) == b.shapesCapacity {
+		return fmt.Errorf("max cap reached")
 	}
+	b.shapes = append(b.shapes, shape)
+
 	return nil
 }
 
